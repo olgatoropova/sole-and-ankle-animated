@@ -1,4 +1,5 @@
 import React from 'react';
+import { keyframes } from 'styled-components';
 import styled from 'styled-components/macro';
 
 import { WEIGHTS } from '../../constants';
@@ -121,6 +122,15 @@ const SalePrice = styled.span`
   color: var(--color-primary);
 `;
 
+const jiggle = keyframes`
+  from {
+    transform: rotate(-2deg);
+  }
+  to {
+    transform: rotate(2deg);
+  }
+`; 
+
 const Flag = styled.div`
   position: absolute;
   top: 12px;
@@ -133,6 +143,12 @@ const Flag = styled.div`
   font-weight: ${WEIGHTS.bold};
   color: var(--color-white);
   border-radius: 2px;
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover & {
+      animation: ${jiggle} 200ms infinite;
+    }
+  }
 `;
 
 const SaleFlag = styled(Flag)`
